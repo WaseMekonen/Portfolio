@@ -1,22 +1,20 @@
 {
-  "main.css": "/Portfolio/static/css/main.2541cc0a.chunk.css",
-  "main.js": "/Portfolio/static/js/main.dcb9f851.chunk.js",
-  "main.js.map": "/Portfolio/static/js/main.dcb9f851.chunk.js.map",
-  "runtime~main.js": "/Portfolio/static/js/runtime~main.132fbc8c.js",
-  "runtime~main.js.map": "/Portfolio/static/js/runtime~main.132fbc8c.js.map",
-  "static/js/2.4d3fa530.chunk.js": "/Portfolio/static/js/2.4d3fa530.chunk.js",
-  "static/js/2.4d3fa530.chunk.js.map": "/Portfolio/static/js/2.4d3fa530.chunk.js.map",
-  "index.html": "/Portfolio/index.html",
-  "precache-manifest.fa5f39698318836a230857facc1a118c.js": "/Portfolio/precache-manifest.fa5f39698318836a230857facc1a118c.js",
-  "service-worker.js": "/Portfolio/service-worker.js",
-  "static/css/main.2541cc0a.chunk.css.map": "/Portfolio/static/css/main.2541cc0a.chunk.css.map",
-  "static/media/E-commerce.jpg": "/Portfolio/static/media/E-commerce.6cd23e1d.jpg",
-  "static/media/Flight-Booking.jpg": "/Portfolio/static/media/Flight-Booking.8322b7f0.jpg",
-  "static/media/Master-Cooking.jpg": "/Portfolio/static/media/Master-Cooking.1ecf28d7.jpg",
-  "static/media/Memory-Game.jpg": "/Portfolio/static/media/Memory-Game.87d04d3e.jpg",
-  "static/media/Quote-generator.jpg": "/Portfolio/static/media/Quote-generator.c548a534.jpg",
-  "static/media/github.svg": "/Portfolio/static/media/github.eb02d889.svg",
-  "static/media/library.jpg": "/Portfolio/static/media/library.f7b907de.jpg",
-  "static/media/oNewWin.svg": "/Portfolio/static/media/oNewWin.eb02d889.svg",
-  "static/media/portfolioPic.png": "/Portfolio/static/media/portfolioPic.41858a2c.png"
+  "files": {
+    "main.css": "/Portfolio/static/css/main.714f5e98.css",
+    "main.js": "/Portfolio/static/js/main.2e2a0d11.js",
+    "static/media/Flight-Booking.jpg": "/Portfolio/static/media/Flight-Booking.2753e325779aa0eb481c.jpg",
+    "static/media/portfolioPic.png": "/Portfolio/static/media/portfolioPic.8f474504dbffd151ee88.png",
+    "static/media/Quote-generator.jpg": "/Portfolio/static/media/Quote-generator.0229f7870353a955be3d.jpg",
+    "static/media/Master-Cooking.jpg": "/Portfolio/static/media/Master-Cooking.8460903284d25953a270.jpg",
+    "static/media/Memory-Game.jpg": "/Portfolio/static/media/Memory-Game.49b347e96d490e97b04c.jpg",
+    "static/media/E-commerce.jpg": "/Portfolio/static/media/E-commerce.a5fe14ef6dfb16a37838.jpg",
+    "static/media/library.jpg": "/Portfolio/static/media/library.f46f134e6e2f2350ee7a.jpg",
+    "index.html": "/Portfolio/index.html",
+    "main.714f5e98.css.map": "/Portfolio/static/css/main.714f5e98.css.map",
+    "main.2e2a0d11.js.map": "/Portfolio/static/js/main.2e2a0d11.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.714f5e98.css",
+    "static/js/main.2e2a0d11.js"
+  ]
 }
