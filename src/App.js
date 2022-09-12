@@ -2,7 +2,7 @@ import "./App.css";
 import React, { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import Aos from "aos";
-import 'aos/dist/aos.css'
+import "aos/dist/aos.css";
 import {
   FaArrowRight,
   FaRocket,
@@ -32,7 +32,7 @@ const skills = [
   { lang: "React", perc: "80%" },
   { lang: "mongoDb", perc: "65%" },
   { lang: "Git", perc: "75%" },
-  { lang: "Uidesign", perc: "70%" },
+  { lang: "Ui design", perc: "70%" },
 ];
 const projects = [
   {
@@ -93,12 +93,8 @@ const filterTypes = [
 ];
 
 function App() {
-
-
-
-
   const errorMessages = {
-    userName: "",
+    userName: "name is short",
     userEmail: "email is not valid",
     message: "message is short",
   };
@@ -108,7 +104,9 @@ function App() {
   const [project, setProjects] = useState(projects);
   const [types, setTypes] = useState(filterTypes);
   const [typeTrim, setTypeTrim] = useState("");
-  const [errorMsg, setErrorMsg] = useState(errorMessages);
+  const [errorName, setErrorName] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+  const [errorEmail, setErrorEmail] = useState("");
   const [userMessage, setUserMessage] = useState({
     userName: "",
     userEmail: "",
@@ -118,14 +116,30 @@ function App() {
 
   const emailValidation = (e) => {
     e.preventDefault();
-    if (userMessage.userName.length < 2 && userMessage.userName == " ") {
-      setErrorMsg(...errorMsg, (errorMsg["userName"] = "name is short"));
-      return console.log("name is short");
+    setErrorMsg("");
+    setErrorName("");
+    setErrorEmail("");
+
+    let isAllValid = true;
+    if (userMessage.userName.length < 2) {
+      setErrorName(errorMessages.userName);
+      console.log("name is short", userMessage.userName);
+      isAllValid = false;
     }
-    if (userMessage.message.length < 15 && userMessage.userName == " ") {
-      setErrorMsg(...errorMsg, (errorMsg["message"] = "message is short"));
-      return console.log("message is short");
-    } else {
+    if (userMessage.message.length < 15) {
+      setErrorMsg(errorMessages.message);
+      console.log("message is short");
+      isAllValid = false;
+    }
+    if (
+      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+        userMessage.userEmail
+      )
+    ) {
+      setErrorEmail(errorMessages.userEmail);
+      isAllValid = false;
+    }
+    if (isAllValid) {
       sendEmail(e);
     }
   };
@@ -157,18 +171,21 @@ function App() {
     setProjects(newArray);
   };
   useEffect(() => {
-    Aos.init({duration:2000});
+    Aos.init({ duration: 2000 });
   }, [skill, project, typeTrim]);
 
   return (
     <div className="App">
-      
-
       <article className="background-cont"></article>
       <article className="background" id="home">
         <div className="circle"></div>
         <article className="welcome">
-          <section className="intro"data-aos="flip-left" data-aos-delay="1000" data-aos-anchor=".example-selector">
+          <section
+            className="intro"
+            data-aos="flip-left"
+            data-aos-delay="1000"
+            data-aos-anchor=".example-selector"
+          >
             <h2>
               Hello, I'm <span>Wase Mekonen</span>.
             </h2>
@@ -181,8 +198,14 @@ function App() {
         </article>
       </article>
       <main>
-        <article className="nav-bar-cont" >
-          <section className="nav-bar" data-aos-offset="200" data-aos="fade-in" duration="1000">
+        <article className="nav-bar-cont">
+          <section
+            className="nav-bar"
+            data-aos-offset="200"
+            data-aos="fade-in"
+            duration="1000"
+            data-aos-anchor=".example-selector"
+          >
             <div className="profile-logo">
               <div className="logo">
                 <a href="#" className="logo-name">{`<`}</a>
@@ -211,12 +234,16 @@ function App() {
           </section>
         </article>
 
-        <article className="about-cont" id="about" >
+        <article className="about-cont" id="about">
           <div className="page-head">
             <h1>ABOUT</h1>
             <div className="line"></div>
           </div>
-          <section className="sum-cont" data-aos="fade-up" data-aos-anchor-placement="top-center">
+          <section
+            className="sum-cont"
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
+          >
             <section>
               <div>
                 <div className="svg-cont">
@@ -282,7 +309,7 @@ function App() {
             <div className="line"></div>
           </div>
           <section className="projects-cont">
-            <ul className="projects-list" >
+            <ul className="projects-list">
               {types &&
                 types.map((item) => {
                   return (
@@ -306,7 +333,10 @@ function App() {
               {project &&
                 project.map((proj) => {
                   return (
-                    <section className="project-container" data-aos="fade-up-right">
+                    <section
+                      className="project-container"
+                      data-aos="fade-up-right"
+                    >
                       <div
                         className="description-cont"
                         style={{ backgroundImage: `url(${proj.img})` }}
@@ -374,7 +404,12 @@ function App() {
             </div>
             <div className="form-cont">
               <section>
-                <form ref={form} onSubmit={emailValidation}>
+                <form
+                  ref={form}
+                  onSubmit={(e) => {
+                    emailValidation(e);
+                  }}
+                >
                   <div className="input-cont">
                     <label>Name</label>
                     <input
@@ -383,10 +418,11 @@ function App() {
                       onChange={(e) => {
                         setUserMessage({
                           ...userMessage,
-                          userName: e.target.value,
+                          userName: e.target.value.trim(),
                         });
                       }}
                     />
+                    <span className="err-msg">{errorName}</span>
                   </div>
                   <div className="input-cont">
                     <label>Enter your mail</label>
@@ -396,10 +432,11 @@ function App() {
                       onChange={(e) => {
                         setUserMessage({
                           ...userMessage,
-                          userEmail: e.target.value,
+                          userEmail: e.target.value.trim(),
                         });
                       }}
                     />
+                    <span className="err-msg">{errorEmail}</span>
                   </div>
                   <div className="textarea-cont">
                     <label>Your message</label>
@@ -408,10 +445,12 @@ function App() {
                       onChange={(e) => {
                         setUserMessage({
                           ...userMessage,
-                          message: e.target.value,
+                          message: e.target.value.trim(),
                         });
                       }}
                     />
+                    <span className="err-msg">{errorMsg}</span>
+
                     <div className="submit-cont">
                       <input type="submit" value="send" />
                     </div>
@@ -421,9 +460,9 @@ function App() {
             </div>
           </section>
           <section className="footer">
-            <div className="back-totop-btn">
+            <a className="back-totop-btn" href="#home">
               <FaArrowCircleUp />
-            </div>
+            </a>
             <div></div>
             <div className="socials-links">
               <div className="social-app">
