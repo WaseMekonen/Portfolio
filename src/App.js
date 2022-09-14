@@ -19,6 +19,7 @@ import {
   FaGithub,
   FaRegWindowMaximize,
 } from "react-icons/fa";
+import { AiFillCheckCircle } from "react-icons/ai";
 
 import { MdMenu } from "react-icons/md";
 import profilePic from "./assets/portfolioPic.png";
@@ -118,6 +119,7 @@ function App() {
     userEmail: "",
     message: "",
   });
+  const [sendMessage, setSendMessage] = useState(false);
   const form = useRef();
 
   const emailValidation = (e) => {
@@ -147,6 +149,11 @@ function App() {
     }
     if (isAllValid) {
       sendEmail(e);
+      setUserMessage({
+        userName: "",
+        userEmail: "",
+        message: "",
+      });
     }
   };
 
@@ -168,6 +175,7 @@ function App() {
           console.log(error.text);
         }
       );
+    setSendMessage(true);
   };
 
   const filterProjects = (technology) => {
@@ -374,6 +382,14 @@ function App() {
           </section>
         </article>
         <article className="contact-cont">
+          {sendMessage ? (
+            <section className="send-message">
+              <h1>Your Message has been sent!</h1>
+              <AiFillCheckCircle />
+            </section>
+          ) : (
+            ""
+          )}
           <section className="contact">
             <div className="page-head" data-aos="zoom-in-left">
               <h1 id="contact">CONTACT</h1>
@@ -441,7 +457,16 @@ function App() {
                     <span className="err-msg">{errorMsg}</span>
 
                     <div className="submit-cont">
-                      <input type="submit" value="send" />
+                      <input
+                        type="submit"
+                        value="send"
+                        disabled={sendMessage}
+                        style={{
+                          backgroundColor: sendMessage
+                            ? "gray"
+                            : "var(--second)",
+                        }}
+                      />
                     </div>
                   </div>
                 </form>
