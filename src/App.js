@@ -1,5 +1,10 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react/jsx-no-target-blank */
+/* eslint-disable jsx-a11y/alt-text */
 import "./App.css";
 import React, { useState, useEffect, useRef } from "react";
+import Navbar from "./components/Navbar";
 import emailjs from "@emailjs/browser";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -12,9 +17,10 @@ import {
   FaLinkedinIn,
   FaPalette,
   FaGithub,
-  FaFacebook,
   FaRegWindowMaximize,
 } from "react-icons/fa";
+
+import { MdMenu } from "react-icons/md";
 import profilePic from "./assets/portfolioPic.png";
 import ecommerce from "./assets/E-commerce.jpg";
 import Quote from "./assets/Quote-generator.jpg";
@@ -22,7 +28,6 @@ import library from "./assets/library.jpg";
 import Cooking from "./assets/Master-Cooking.jpg";
 import Flight from "./assets/Flight-Booking.jpg";
 import Memory from "./assets/Memory-Game.jpg";
-import { object } from "prop-types";
 
 const skills = [
   { lang: "HTML", perc: "90%" },
@@ -99,6 +104,7 @@ function App() {
     message: "message is short",
   };
   const [skill, setSkill] = useState(skills);
+  const [show, setShow] = useState(false);
   const [projModal, setProjModal] = useState("");
   const [modal, setModal] = useState(false);
   const [project, setProjects] = useState(projects);
@@ -171,14 +177,13 @@ function App() {
     setProjects(newArray);
   };
   useEffect(() => {
-    Aos.init({ duration: 2000 });
-  }, [skill, project, typeTrim]);
+    Aos.init({ duration: 2000, once: true });
+  }, [skill, project, typeTrim, show]);
 
   return (
     <div className="App">
-      <article className="background-cont"></article>
       <article className="background" id="home">
-        <div className="circle"></div>
+        <article className="background-cont"></article>
         <article className="welcome">
           <section
             className="intro"
@@ -198,52 +203,14 @@ function App() {
         </article>
       </article>
       <main>
-        <article className="nav-bar-cont">
-          <section
-            className="nav-bar"
-            data-aos-offset="200"
-            data-aos="fade-in"
-            duration="1000"
-            data-aos-anchor=".example-selector"
-          >
-            <div className="profile-logo">
-              <div className="logo">
-                <a href="#" className="logo-name">{`<`}</a>
-
-                <a href="#">
-                  <span>W</span>ase
-                </a>
-                <a href="#" className="logo-name">{`/>`}</a>
-              </div>
-            </div>
-
-            <div className="aside-nav">
-              <ul>
-                <li>
-                  <a href="#about">ABOUT</a>
-                </li>
-                <li>
-                  <a href="#portfolio">PROJECTS</a>
-                </li>
-
-                <li>
-                  <a href="#contact">CONTACT</a>
-                </li>
-              </ul>
-            </div>
-          </section>
-        </article>
+        <Navbar show={show} setShow={setShow} />
 
         <article className="about-cont" id="about">
           <div className="page-head">
             <h1>ABOUT</h1>
             <div className="line"></div>
           </div>
-          <section
-            className="sum-cont"
-            data-aos="fade-up"
-            data-aos-anchor-placement="top-center"
-          >
+          <section className="sum-cont" data-aos="fade-up">
             <section>
               <div>
                 <div className="svg-cont">
@@ -281,7 +248,12 @@ function App() {
                     <div className="skill" key={item.lang}>
                       <h2>{item.lang}</h2>
                       <div className="scale">
-                        <div style={{ width: item.perc }}></div>
+                        <div
+                          style={{ width: item.perc }}
+                          data-aos="fade-right"
+                          data-aos-offset="300"
+                          data-aos-easing="ease-in-sine"
+                        ></div>
                       </div>
                       <span>{item.perc}</span>
                     </div>
@@ -301,15 +273,14 @@ function App() {
               </div>
             </div>
           </section>
-          {/* <section></section> */}
         </article>
         <article className="portfilio-cont" id="portfolio">
-          <div className="page-head">
+          <div className="page-head" data-aos="fade-right">
             <h1>PROJECTS</h1>
             <div className="line"></div>
           </div>
           <section className="projects-cont">
-            <ul className="projects-list">
+            <ul className="projects-list" data-aos="fade-right">
               {types &&
                 types.map((item) => {
                   return (
@@ -335,7 +306,8 @@ function App() {
                   return (
                     <section
                       className="project-container"
-                      data-aos="fade-up-right"
+                      // data-aos="fade-up-right"
+                      data-aos="flip-left"
                     >
                       <div
                         className="description-cont"
@@ -359,47 +331,52 @@ function App() {
                   );
                 })}
               <section
-                className="modal"
+                className="modal-cont"
+                onClick={() => {
+                  setModal(!modal);
+                }}
                 style={{ visibility: modal ? "visible" : "hidden" }}
               >
-                <span
-                  onClick={() => {
-                    setModal(!modal);
-                  }}
-                >
-                  X
-                </span>
-                <div className="modal-pic">
-                  <img src={projModal.img}></img>
-                </div>
-                <div className="modal-description">
-                  <h1>{projModal.name}</h1>
-                  <div className="proj-desc">
-                    <p>Lorem mmsd ksxse dsdx crtr sddsa cxcv fdgsmc</p>
+                <div className="modal">
+                  <span
+                    onClick={() => {
+                      setModal(!modal);
+                    }}
+                  >
+                    X
+                  </span>
+                  <div className="modal-pic">
+                    <img src={projModal.img}></img>
                   </div>
-                  <ul>
-                    {projModal.technologys &&
-                      projModal.technologys.map((technology) => {
-                        return <li key={technology}>-{technology}</li>;
-                      })}{" "}
-                  </ul>
-                  <div className="project-links">
-                    <a href={projModal.gitLink}>
-                      <FaGithub />
-                    </a>
-                    <a href={projModal.projectLink}>
-                      <FaRegWindowMaximize />
-                    </a>
+                  <div className="modal-description">
+                    <h1>{projModal.name}</h1>
+                    <div className="proj-desc">
+                      <p>Lorem mmsd ksxse dsdx crtr sddsa cxcv fdgsmc</p>
+                    </div>
+                    <ul>
+                      {projModal.technologys &&
+                        projModal.technologys.map((technology) => {
+                          return <li key={technology}>-{technology}</li>;
+                        })}{" "}
+                    </ul>
+                    <div className="project-links">
+                      <a href={projModal.gitLink} target="_blank">
+                        <FaGithub />
+                      </a>
+                      <a href={projModal.projectLink} target="_blank">
+                        <FaRegWindowMaximize />
+                      </a>
+                    </div>
                   </div>
                 </div>
               </section>
             </div>
           </section>
         </article>
-        <article className="contact-cont" id="contact">
+        <article className="contact-cont">
           <section className="contact">
-            <div className="page-head">
-              <h1>CONTACT</h1>
+            <div className="page-head" data-aos="zoom-in-left">
+              <h1 id="contact">CONTACT</h1>
               <div className="line"></div>
             </div>
             <div className="form-cont">
@@ -410,7 +387,11 @@ function App() {
                     emailValidation(e);
                   }}
                 >
-                  <div className="input-cont">
+                  <div
+                    className="input-cont"
+                    data-aos="fade-right"
+                    data-aos-easing="ease-in-sine"
+                  >
                     <label>Name</label>
                     <input
                       type="text"
@@ -424,7 +405,11 @@ function App() {
                     />
                     <span className="err-msg">{errorName}</span>
                   </div>
-                  <div className="input-cont">
+                  <div
+                    className="input-cont"
+                    data-aos="fade-left"
+                    data-aos-easing="ease-in-sine"
+                  >
                     <label>Enter your mail</label>
                     <input
                       type="text"
@@ -438,7 +423,11 @@ function App() {
                     />
                     <span className="err-msg">{errorEmail}</span>
                   </div>
-                  <div className="textarea-cont">
+                  <div
+                    className="textarea-cont"
+                    data-aos="fade-right"
+                    data-aos-easing="ease-in-sine"
+                  >
                     <label>Your message</label>
                     <textarea
                       name="message"
@@ -465,15 +454,20 @@ function App() {
             </a>
             <div></div>
             <div className="socials-links">
-              <div className="social-app">
+              <a
+                className="social-app"
+                target="_blank"
+                href="https://www.linkedin.com/in/wase-mekonen/"
+              >
                 <FaLinkedinIn />
-              </div>
-              <div className="social-app">
+              </a>
+              <a
+                className="social-app"
+                target="_blank"
+                href="https://github.com/WaseMekonen"
+              >
                 <FaGithub />
-              </div>
-              <div className="social-app">
-                <FaFacebook />
-              </div>
+              </a>
             </div>
             <div className="copy-right">
               <h2>

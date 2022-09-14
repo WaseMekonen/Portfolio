@@ -1,0 +1,118 @@
+.nav-bar-cont {
+  position: sticky;
+  height: 56px;
+  width: 100%;
+  top: 0;
+  border-bottom: 2px solid var(--second);
+  background-color: var(--third);
+  z-index: 1;
+}
+.nav-bar {
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  padding: 8px;
+  justify-content: center;
+}
+.aside-nav {
+  display: flex;
+  width: 70vw;
+  align-items: center;
+}
+.aside-nav ul {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.aside-nav ul li a {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 14%;
+  justify-content: space-evenly;
+  color: var(--first);
+  transition: 1s;
+  cursor: pointer;
+}
+.aside-nav ul li a:hover {
+  transition: 1s;
+  color: var(--forth);
+}
+
+.profile-logo {
+  display: flex;
+  width: 20%;
+  cursor: pointer;
+  transition: 1s;
+  justify-content: center;
+  align-items: center;
+}
+.logo a {
+  position: relative;
+  font-family: var(--second-font);
+  font-size: 2rem;
+  letter-spacing: 3px;
+  font-weight: 700;
+  color: var(--first);
+}
+.profile-logo :hover {
+  color: var(--fifth);
+  transition: 1s;
+}
+
+.logo a span {
+  position: relative;
+}
+.logo .logo-name {
+  color: var(--second);
+}
+.nav-mobile svg {
+  display: none;
+}
+.nav-list-mobile {
+  display: none;
+}
+
+@media screen and (min-width: 0px) and (max-width: 618px) {
+  .nav-bar {
+    display: none;
+  }
+  .nav-mobile svg {
+    display: block;
+    font-size: 3rem;
+    color: var(--second);
+  }
+  .nav-bar-cont {
+    position: sticky;
+    z-index: 3;
+  }
+  .nav-list-mobile {
+    position: absolute;
+    height: 27vh;
+    width: 100%;
+    background: var(--second);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    top: 56px;
+  }
+  .nav-list-mobile ul {
+    padding: 2%;
+    height: 90%;
+    width: 50%;
+    font-size: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-family: monospace;
+  }
+  .nav-list-mobile a {
+    color: var(--third);
+  }
+}
