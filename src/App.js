@@ -1,7 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable react/jsx-no-target-blank */
-/* eslint-disable jsx-a11y/alt-text */
 import "./App.css";
 import React, { useState, useEffect, useRef } from "react";
 import Navbar from "./components/Navbar";
@@ -12,7 +8,7 @@ import {
   FaArrowRight,
   FaRocket,
   FaCode,
-  FaUserFriends,
+  FaServer,
   FaArrowCircleUp,
   FaLinkedinIn,
   FaPalette,
@@ -20,11 +16,9 @@ import {
   FaRegWindowMaximize,
 } from "react-icons/fa";
 import { AiFillCheckCircle } from "react-icons/ai";
-
-import { MdMenu } from "react-icons/md";
 import profilePic from "./assets/portfolioPic.png";
 import ecommerce from "./assets/E-commerce.jpg";
-import Quote from "./assets/Quote-generator.jpg";
+import Quote from "./assets/Quote-Generator.jpg";
 import library from "./assets/library.jpg";
 import Cooking from "./assets/Master-Cooking.jpg";
 import Flight from "./assets/Flight-Booking.jpg";
@@ -48,14 +42,17 @@ const projects = [
     img: ecommerce,
     gitLink: "https://github.com/WaseMekonen",
     projectLink: "https://wasemekonen.github.io/Memory-Game/",
+    desc: "",
   },
   {
     name: "Quote-generator",
-    type: "React",
-    technologys: ["nodeJs", "mongoDb", "Express", "Html/css"],
+    type: "JS-vanila",
+    technologys: ["javascript", "Html/css"],
+
     img: Quote,
     gitLink: "https://github.com/WaseMekonen",
-    projectLink: "https://wasemekonen.github.io/Memory-Game/",
+    projectLink: "https://wasemekonen.github.io/Quote-generator/",
+    desc: "Random Quote Generator using HTML, CSS, JavaScript, and API. This application fetches a new random quote from an API, upon the click of a button, and displays it in the browser.",
   },
   {
     name: "Library",
@@ -64,6 +61,7 @@ const projects = [
     img: library,
     gitLink: "https://github.com/WaseMekonen",
     projectLink: "https://wasemekonen.github.io/Memory-Game/",
+    desc: "",
   },
   {
     name: "Master-Cooking",
@@ -72,6 +70,7 @@ const projects = [
     img: Cooking,
     gitLink: "https://github.com/WaseMekonen",
     projectLink: "https://wasemekonen.github.io/Memory-Game/",
+    desc: "",
   },
   {
     name: "Flight-Booking",
@@ -80,15 +79,17 @@ const projects = [
     img: Flight,
     gitLink: "https://github.com/WaseMekonen",
     projectLink: "https://wasemekonen.github.io/Memory-Game/",
+    desc: "",
   },
   {
     name: "Memory-Game",
     type: "React",
-    technologys: ["nodeJs", "mongoDb", "Express", "Html/css"],
+    technologys: ["Html/css", "React"],
     img: Memory,
     link: "https://wasemekonen.github.io/Memory-Game/",
     gitLink: "https://github.com/WaseMekonen/Memory-Game",
     projectLink: "https://wasemekonen.github.io/Memory-Game/",
+    desc: "The card memory game is a simple game to test the player’s memory. In a deck of paired cards, the player needs to select a matching pair in consecutive turns. The player wins the game when all matching pairs are selected.",
   },
 ];
 const filterTypes = [
@@ -114,6 +115,7 @@ function App() {
   const [errorName, setErrorName] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
+  // const [buttonActive, setuttonActive] = useState(false);
   const [userMessage, setUserMessage] = useState({
     userName: "",
     userEmail: "",
@@ -121,6 +123,7 @@ function App() {
   });
   const [sendMessage, setSendMessage] = useState(false);
   const form = useRef();
+  // const [name, setName] = useRef();
 
   const emailValidation = (e) => {
     e.preventDefault();
@@ -139,11 +142,7 @@ function App() {
       console.log("message is short");
       isAllValid = false;
     }
-    if (
-      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
-        userMessage.userEmail
-      )
-    ) {
+    if (userMessage.userEmail) {
       setErrorEmail(errorMessages.userEmail);
       isAllValid = false;
     }
@@ -236,18 +235,19 @@ function App() {
             <section>
               <div>
                 <div className="svg-cont">
-                  <FaUserFriends />
+                  <FaServer />
                 </div>
-                <h3>Team Player</h3>
+                <h3>Back-end Development</h3>
               </div>
               <div>
                 <div className="svg-cont">
                   <FaRocket />
                 </div>
-                <h3>Quick Learner</h3>
+                <h3>FreeLancing</h3>
               </div>
             </section>
           </section>
+          {/* <section className="divider"></section> */}
           <section className="skills-cont">
             <div className="skills" data-aos="fade-right" data-aos-offset="200">
               {skill &&
@@ -292,7 +292,8 @@ function App() {
               {types &&
                 types.map((item) => {
                   return (
-                    <li
+                    <button
+                      className="active-botton"
                       key={item.id}
                       onClick={(e) => {
                         e.preventDefault();
@@ -304,7 +305,7 @@ function App() {
                       }}
                     >
                       {item.name}
-                    </li>
+                    </button>
                   );
                 })}
             </ul>
@@ -346,20 +347,20 @@ function App() {
                 style={{ visibility: modal ? "visible" : "hidden" }}
               >
                 <div className="modal">
-                  <span
+                  {/* <span
                     onClick={() => {
-                      setModal(!modal);
+                      setModal(!modal); 
                     }}
                   >
                     X
-                  </span>
+                  </span> */}
                   <div className="modal-pic">
                     <img src={projModal.img}></img>
                   </div>
                   <div className="modal-description">
                     <h1>{projModal.name}</h1>
                     <div className="proj-desc">
-                      <p>Lorem mmsd ksxse dsdx crtr sddsa cxcv fdgsmc</p>
+                      <p>{projModal.desc}</p>
                     </div>
                     <ul>
                       {projModal.technologys &&
@@ -496,7 +497,7 @@ function App() {
             </div>
             <div className="copy-right">
               <h2>
-                Wase mekonen || <span>2022</span>{" "}
+                Wase mekonen || <span>{new Date().getFullYear()}</span>{" "}
               </h2>
             </div>
           </section>

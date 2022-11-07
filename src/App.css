@@ -246,14 +246,14 @@ h3 {
 .sum-cont section {
   display: flex;
   height: 210px;
-  width: 553px;
-
+  width: 580px;
   align-items: center;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 .sum-cont section div {
   height: 90%;
+  /* box-shadow: 3px 5px 5px -3px grey; */
   width: 45%;
   display: flex;
   flex-wrap: wrap;
@@ -264,6 +264,11 @@ h3 {
   border-radius: 6px;
   background: rgb(229 229 229);
   align-items: center;
+  transition: 0.4s;
+}
+.sum-cont section div:hover {
+  box-shadow: 3px 5px 5px -3px grey;
+  transition: 0.4s;
 }
 .sum-cont section div h3 {
   font-size: 1.2rem;
@@ -275,8 +280,8 @@ h3 {
 .sum-cont section div .svg-cont {
   position: relative;
   font-size: 3.8rem;
-  color: var(--fifth);
-  background-color: bisque;
+  color: var(--second);
+  background-color: var(--third);
   height: 47%;
   width: 51%;
   border-radius: 50%;
@@ -290,6 +295,18 @@ h3 {
   font-size: 1rem;
 }
 
+.divider {
+  height: 130px;
+  width: 100%;
+  background: #f1f1f1;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row;
+  justify-content: center;
+}
+.divider hr {
+  width: 100%;
+}
 .skills-cont {
   height: 695px;
   display: flex;
@@ -321,6 +338,7 @@ h3 {
   justify-content: center;
   color: white;
   font-size: 0.8rem;
+  z-index: 1;
 }
 .skill span {
   margin-left: 2%;
@@ -419,24 +437,30 @@ h3 {
   margin: 2px 0;
   width: 100%;
   height: 55px;
-  background: #d2d2d2;
+  background: #e5e5e5;
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
-.projects-list li {
-  width: 19%;
+.projects-list button {
+  width: 12%;
   height: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   border: none;
-  background: none;
+  background: #cfcfcf;
+  border-radius: 6px;
   font-weight: 500;
   cursor: pointer;
-  color: var(--forth);
+  color: var(--first);
+}
+.active-botton:focus {
+  background-color: #65d4ea;
+  width: 12%;
+  border-radius: 9px;
 }
 .proj-map {
   width: 100%;
@@ -519,6 +543,7 @@ h3 {
   opacity: 1;
 }
 .modal-cont {
+  display: flex;
   visibility: visible;
   position: fixed;
   height: 100vh;
@@ -526,18 +551,18 @@ h3 {
   width: 100vw;
   top: 0;
   z-index: 1;
+  justify-content: center;
+  align-items: center;
 }
 .modal {
   position: absolute;
   display: flex;
-  height: 76%;
-  top: 18%;
-  right: 12%;
-  width: 74%;
+  height: 550px;
+  width: 1020px;
   border-radius: 10px;
   background: #ffffff;
   border: 2px solid black;
-  flex-direction: row;
+  z-index: 4;
   align-items: center;
 }
 .modal-pic {
@@ -582,11 +607,12 @@ h3 {
   position: relative;
   width: 102%;
   height: 40%;
-  background: var(--second);
+  background: #7dbcd1;
   right: 81px;
-  font-size: 1.3rem;
   border-radius: 12px;
   padding: 2%;
+  font-size: 1.2rem;
+  font-weight: 400;
 }
 .modal-description h1 {
   width: 100%;
@@ -603,12 +629,13 @@ h3 {
   flex-direction: row;
   align-items: center;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 800;
   color: var(--fifth);
 }
 .project-links {
   margin: 2px 0;
   width: 100%;
+  font-size: 1.9rem;
   height: 55px;
   background: #d2d2d2;
   display: flex;
@@ -686,11 +713,12 @@ form label {
 }
 .input-cont input {
   height: 60%;
-  font-size: 1rem;
-  font-weight: 600;
-  background-color: #7a7a7a;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #335961;
+  background-color: #d8d4d4;
   border: 1px solid gray;
-  color: var(--third);
+  border-radius: 6px;
 }
 .textarea-cont {
   height: 60%;
@@ -701,10 +729,16 @@ form label {
 }
 .textarea-cont textarea {
   height: 80%;
-  font-weight: 600;
-  font-size: 1.2rem;
-  color: var(--third);
-  background: gray;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #335961;
+  background-color: #d8d4d4;
+  border: 1px solid gray;
+  border-radius: 6px;
+}
+.textarea-cont textarea,
+.input-cont input:focus {
+  outline-color: var(--second);
 }
 .submit-cont {
   position: absolute;
