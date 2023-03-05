@@ -1,9 +1,11 @@
 import "./App.css";
 import React, { useState, useEffect, useRef } from "react";
+// import projects from "./moudles";
 import Navbar from "./components/Navbar";
 import emailjs from "@emailjs/browser";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import { filterTypes, projects, skills } from "./moudles";
 import {
   FaArrowRight,
   FaRocket,
@@ -13,91 +15,10 @@ import {
   FaLinkedinIn,
   FaPalette,
   FaGithub,
-  FaRegWindowMaximize,
 } from "react-icons/fa";
 import { AiFillCheckCircle } from "react-icons/ai";
 import profilePic from "./assets/portfolioPic.png";
-import ecommerce from "./assets/E-commerce.jpg";
-import Quote from "./assets/Quote-Generator.jpg";
-import library from "./assets/library.jpg";
-import Cooking from "./assets/Master-Cooking.jpg";
-import Flight from "./assets/Flight-Booking.jpg";
-import Memory from "./assets/Memory-Game.jpg";
-
-const skills = [
-  { lang: "HTML", perc: "90%" },
-  { lang: "CSS", perc: "80%" },
-  { lang: "JavaScript", perc: "70%" },
-  { lang: "Node.js", perc: "60%" },
-  { lang: "React", perc: "80%" },
-  { lang: "mongoDb", perc: "65%" },
-  { lang: "Git", perc: "75%" },
-  { lang: "Ui design", perc: "70%" },
-];
-const projects = [
-  {
-    name: "E-commerce",
-    type: "JS-vanila",
-    technologys: ["nodeJs", "mongoDb", "Express", "Html/css"],
-    img: ecommerce,
-    gitLink: "https://github.com/WaseMekonen",
-    projectLink: "https://wasemekonen.github.io/Memory-Game/",
-    desc: "",
-  },
-  {
-    name: "Quote-generator",
-    type: "JS-vanila",
-    technologys: ["javascript", "Html/css"],
-
-    img: Quote,
-    gitLink: "https://github.com/WaseMekonen",
-    projectLink: "https://wasemekonen.github.io/Quote-generator/",
-    desc: "Random Quote Generator using HTML, CSS, JavaScript, and API. This application fetches a new random quote from an API, upon the click of a button, and displays it in the browser.",
-  },
-  {
-    name: "Library",
-    type: "React",
-    technologys: ["nodeJs", "mongoDb", "Express", "Html/css"],
-    img: library,
-    gitLink: "https://github.com/WaseMekonen",
-    projectLink: "https://wasemekonen.github.io/Memory-Game/",
-    desc: "",
-  },
-  {
-    name: "Master-Cooking",
-    type: "React",
-    technologys: ["nodeJs", "mongoDb", "Express", "Html/css"],
-    img: Cooking,
-    gitLink: "https://github.com/WaseMekonen",
-    projectLink: "https://wasemekonen.github.io/Memory-Game/",
-    desc: "",
-  },
-  {
-    name: "Flight-Booking",
-    type: "React",
-    technologys: ["nodeJs", "mongoDb", "Express", "Html/css"],
-    img: Flight,
-    gitLink: "https://github.com/WaseMekonen",
-    projectLink: "https://wasemekonen.github.io/Memory-Game/",
-    desc: "",
-  },
-  {
-    name: "Memory-Game",
-    type: "React",
-    technologys: ["Html/css", "React"],
-    img: Memory,
-    link: "https://wasemekonen.github.io/Memory-Game/",
-    gitLink: "https://github.com/WaseMekonen/Memory-Game",
-    projectLink: "https://wasemekonen.github.io/Memory-Game/",
-    desc: "The card memory game is a simple game to test the player’s memory. In a deck of paired cards, the player needs to select a matching pair in consecutive turns. The player wins the game when all matching pairs are selected.",
-  },
-];
-const filterTypes = [
-  { id: 1, name: "All" },
-  { id: 2, name: "JS-vanila" },
-  { id: 3, name: "React" },
-  { id: 4, name: "Node.js" },
-];
+import Projects from "./components/Projects";
 
 function App() {
   const errorMessages = {
@@ -108,14 +29,12 @@ function App() {
   const [skill, setSkill] = useState(skills);
   const [show, setShow] = useState(false);
   const [projModal, setProjModal] = useState("");
-  const [modal, setModal] = useState(false);
   const [project, setProjects] = useState(projects);
   const [types, setTypes] = useState(filterTypes);
   const [typeTrim, setTypeTrim] = useState("");
   const [errorName, setErrorName] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
-  // const [buttonActive, setuttonActive] = useState(false);
   const [userMessage, setUserMessage] = useState({
     userName: "",
     userEmail: "",
@@ -123,7 +42,6 @@ function App() {
   });
   const [sendMessage, setSendMessage] = useState(false);
   const form = useRef();
-  // const [name, setName] = useRef();
 
   const emailValidation = (e) => {
     e.preventDefault();
@@ -286,101 +204,8 @@ function App() {
           <div className="page-head" data-aos="fade-right">
             <h1>PROJECTS</h1>
             <div className="line"></div>
+            <Projects />
           </div>
-          <section className="projects-cont">
-            <ul className="projects-list" data-aos="fade-right">
-              {types &&
-                types.map((item) => {
-                  return (
-                    <button
-                      className="active-botton"
-                      key={item.id}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        if (item.name === "All") {
-                          setProjects(projects);
-                        } else {
-                          filterProjects(item.name);
-                        }
-                      }}
-                    >
-                      {item.name}
-                    </button>
-                  );
-                })}
-            </ul>
-            <div className="proj-map">
-              {project &&
-                project.map((proj) => {
-                  return (
-                    <section
-                      className="project-container"
-                      // data-aos="fade-up-right"
-                      data-aos="flip-left"
-                    >
-                      <div
-                        className="description-cont"
-                        style={{ backgroundImage: `url(${proj.img})` }}
-                      >
-                        <div className="proj-bckg"></div>
-                        <div className="description">
-                          <h2>{proj.name}</h2>
-                          <h1>{proj.type}</h1>
-                          <button
-                            onClick={() => {
-                              setModal(!modal);
-                              setProjModal(proj);
-                            }}
-                          >
-                            <a>Learm More</a>
-                          </button>
-                        </div>
-                      </div>
-                    </section>
-                  );
-                })}
-              <section
-                className="modal-cont"
-                onClick={() => {
-                  setModal(!modal);
-                }}
-                style={{ visibility: modal ? "visible" : "hidden" }}
-              >
-                <div className="modal">
-                  {/* <span
-                    onClick={() => {
-                      setModal(!modal); 
-                    }}
-                  >
-                    X
-                  </span> */}
-                  <div className="modal-pic">
-                    <img src={projModal.img}></img>
-                  </div>
-                  <div className="modal-description">
-                    <h1>{projModal.name}</h1>
-                    <div className="proj-desc">
-                      <p>{projModal.desc}</p>
-                    </div>
-                    <ul>
-                      {projModal.technologys &&
-                        projModal.technologys.map((technology) => {
-                          return <li key={technology}>-{technology}</li>;
-                        })}{" "}
-                    </ul>
-                    <div className="project-links">
-                      <a href={projModal.gitLink} target="_blank">
-                        <FaGithub />
-                      </a>
-                      <a href={projModal.projectLink} target="_blank">
-                        <FaRegWindowMaximize />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </div>
-          </section>
         </article>
         <article className="contact-cont">
           {sendMessage ? (
