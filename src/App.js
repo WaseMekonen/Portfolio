@@ -18,7 +18,7 @@ import {
 } from "react-icons/fa";
 import { AiFillCheckCircle } from "react-icons/ai";
 import profilePic from "./assets/portfolioPic.png";
-import Projects from "./components/Projects";
+import Projects from "./components/Projects copy";
 
 function App() {
   const errorMessages = {
@@ -26,12 +26,12 @@ function App() {
     userEmail: "email is not valid",
     message: "message is short",
   };
-  const [skill, setSkill] = useState(skills);
+  const [skill] = useState(skills);
   const [show, setShow] = useState(false);
-  const [projModal, setProjModal] = useState("");
+  // const [projModal] = useState("");
   const [project, setProjects] = useState(projects);
-  const [types, setTypes] = useState(filterTypes);
-  const [typeTrim, setTypeTrim] = useState("");
+  // const [] = useState(filterTypes);
+  const [typeTrim] = useState("");
   const [errorName, setErrorName] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
@@ -65,7 +65,7 @@ function App() {
       isAllValid = false;
     }
     if (isAllValid) {
-      sendEmail(e);
+      sendEmail();
       setUserMessage({
         userName: "",
         userEmail: "",
@@ -93,14 +93,11 @@ function App() {
         }
       );
     setSendMessage(true);
+    setErrorMsg("");
+    setErrorName("");
+    setErrorEmail("");
   };
 
-  const filterProjects = (technology) => {
-    const newArray = projects.filter((item) => {
-      return item.type === technology;
-    });
-    setProjects(newArray);
-  };
   useEffect(() => {
     Aos.init({ duration: 2000, once: true });
   }, [skill, project, typeTrim, show]);
@@ -129,7 +126,6 @@ function App() {
       </article>
       <main>
         <Navbar show={show} setShow={setShow} />
-
         <article className="about-cont" id="about">
           <div className="page-head">
             <h1>ABOUT</h1>
@@ -137,27 +133,27 @@ function App() {
           </div>
           <section className="sum-cont" data-aos="fade-up">
             <section>
-              <div>
+              <div className="sum-cont-icon">
                 <div className="svg-cont">
                   <FaCode />
                 </div>
                 <h3>Web Development</h3>
               </div>
-              <div>
+              <div className="sum-cont-icon">
                 <div className="svg-cont">
                   <FaPalette />
                 </div>
-                <h3>Creative Design</h3>
+                <h3>Responsive Web Design</h3>
               </div>
             </section>
             <section>
-              <div>
+              <div className="sum-cont-icon">
                 <div className="svg-cont">
                   <FaServer />
                 </div>
                 <h3>Back-end Development</h3>
               </div>
-              <div>
+              <div className="sum-cont-icon">
                 <div className="svg-cont">
                   <FaRocket />
                 </div>
@@ -167,21 +163,28 @@ function App() {
           </section>
           {/* <section className="divider"></section> */}
           <section className="skills-cont">
-            <div className="skills" data-aos="fade-right" data-aos-offset="200">
+            <div
+              className="skills"
+              data-aos="fade-right"
+              data-aos-offset="300"
+              data-aos-easing="ease-in-sine"
+            >
               {skill &&
                 skill.map((item) => {
                   return (
                     <div className="skill" key={item.lang}>
-                      <h2>{item.lang}</h2>
-                      <div className="scale">
+                      <h2 className="skill-lng">{item.lang}</h2>
+                      <div className="scale-percetage">
                         <div
-                          style={{ width: item.perc }}
-                          data-aos="fade-right"
-                          data-aos-offset="300"
-                          data-aos-easing="ease-in-sine"
+                          className="percetage"
+                          style={{
+                            width: `${item.perc}%`,
+                            animation:
+                              " 4s ease 0.5s 1 normal forwards running percentage-animation",
+                          }}
                         ></div>
                       </div>
-                      <span>{item.perc}</span>
+                      <span className="skill-perc">{item.perc}%</span>
                     </div>
                   );
                 })}
@@ -190,8 +193,9 @@ function App() {
               <h3>Who is Wase?</h3>
               <div>
                 <h4>
-                  Full-Stack Web Application Developer, live and work in Israel.
-                  Passionate about technology, striving to be the best.
+                  I am a Full-Stack Web Application Developer based in Israel,
+                  deeply passionate about technology and committed to achieving
+                  excellence in my work.
                 </h4>
                 <section className="pic">
                   <img src={profilePic} alt="" />
@@ -252,7 +256,7 @@ function App() {
                     data-aos="fade-left"
                     data-aos-easing="ease-in-sine"
                   >
-                    <label>Enter your mail</label>
+                    <label>Your email</label>
                     <input
                       type="text"
                       name="user_email"
@@ -289,8 +293,8 @@ function App() {
                         disabled={sendMessage}
                         style={{
                           backgroundColor: sendMessage
-                            ? "gray"
-                            : "var(--second)",
+                            ? "var(--third)"
+                            : "gray",
                         }}
                       />
                     </div>
@@ -309,6 +313,7 @@ function App() {
                 className="social-app"
                 target="_blank"
                 href="https://www.linkedin.com/in/wase-mekonen/"
+                rel="noreferrer"
               >
                 <FaLinkedinIn />
               </a>
@@ -316,6 +321,7 @@ function App() {
                 className="social-app"
                 target="_blank"
                 href="https://github.com/WaseMekonen"
+                rel="noreferrer"
               >
                 <FaGithub />
               </a>

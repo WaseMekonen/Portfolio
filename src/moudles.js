@@ -1,19 +1,19 @@
-import ecommerce from "./assets/E-commerce.jpg";
+import CoustomeCountdown from "./assets/CoustomeCountdown.jpg";
 import Quote from "./assets/Quote-Generator.jpg";
-import ticTacToe from "./assets/tictactoe.jpg";
+import TicTacToe from "./assets/TicTacToe.jpg";
 import Cooking from "./assets/Master-Cooking.jpg";
 import Flight from "./assets/Flight-Booking.jpg";
 import Memory from "./assets/Memory-Game.jpg";
 
 export const projects = [
   {
-    name: "E-commerce",
+    name: "Coustom-Countdown",
     type: "JS-vanila",
-    technologys: ["nodeJs", "mongoDb", "Express", "Html/css"],
-    img: ecommerce,
+    technologys: ["Javascript", "Html", "css"],
+    img: CoustomeCountdown,
     gitLink: "https://github.com/WaseMekonen",
-    projectLink: "https://wasemekonen.github.io/Memory-Game/",
-    desc: "",
+    projectLink: "https://wasemekonen.github.io/CoustomCountDown/",
+    desc: "The custom countdown project is a simple application built with JavaScript, HTML, CSS, and local storage. It allows users to create personalized countdowns for events, offering a user-friendly and interactive experience with customizable features.",
   },
   {
     name: "Quote-generator",
@@ -29,10 +29,10 @@ export const projects = [
     name: "Tic Tac Toe",
     type: "JS-vanila",
     technologys: ["javascript", "Html/css"],
-    img: ticTacToe,
+    img: TicTacToe,
     gitLink: "https://github.com/WaseMekonen/Tic_Tac_Toe",
     projectLink: "https://wasemekonen.github.io/Tic_Tac_Toe/",
-    desc: "",
+    desc: "The tic-tac-toe project is a JavaScript-based game built with HTML and CSS. It offers an interactive experience for users to play against each other. With its visually appealing design, it provides a fun and engaging gaming experience.",
   },
   {
     name: "Master-Cooking",
@@ -72,12 +72,12 @@ export const filterTypes = [
 ];
 
 export const skills = [
-  { lang: "HTML", perc: "90%" },
-  { lang: "CSS", perc: "80%" },
-  { lang: "JavaScript", perc: "70%" },
-  { lang: "Node.js", perc: "60%" },
-  { lang: "React", perc: "80%" },
-  { lang: "mongoDb", perc: "65%" },
-  { lang: "Git", perc: "75%" },
-  { lang: "Ui design", perc: "70%" },
+  { lang: "JavaScript", perc: "85" },
+  { lang: "CSS", perc: "80" },
+  { lang: "HTML", perc: "90" },
+  { lang: "Node.js", perc: "80" },
+  { lang: "React", perc: "85" },
+  { lang: "MongoDb", perc: "85" },
+  { lang: "Git", perc: "85" },
+  { lang: "Ui design", perc: "80" },
 ];

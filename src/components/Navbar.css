@@ -28,13 +28,11 @@
 }
 
 .aside-nav ul li a {
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 600;
+  font-weight: 900;
   display: flex;
   align-items: center;
   height: 100%;
-  width: 14%;
+  font-family: fantasy;
   justify-content: space-evenly;
   color: var(--first);
   transition: 1s;
@@ -42,7 +40,7 @@
 }
 .aside-nav ul li a:hover {
   transition: 1s;
-  color: var(--forth);
+  color: var(--fifth);
 }
 
 .profile-logo {

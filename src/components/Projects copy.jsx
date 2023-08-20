@@ -5,14 +5,14 @@ import { filterTypes, projects } from "../moudles";
 
 const Projects = () => {
   const [project, setProjects] = useState(projects);
-  const [types, setTypes] = useState(filterTypes);
+  const [types] = useState(filterTypes);
   const [modal, setModal] = useState(false);
   const [projModal, setProjModal] = useState("");
 
   const filterProjects = (technology) => {
     const newArray = projects.filter((item) => item.type === technology);
     setProjects(newArray);
-  };
+  };  
 
   return (
     <section className="projects-cont">
