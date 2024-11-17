@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+import React, { useState } from "react";
 import { MdMenu } from "react-icons/md";
 import { AiOutlineClose } from "react-icons/ai";
 import "./Navbar.css";
 
-function Navbar({ show, setShow }) {
+function Navbar() {
+  const [show, setShow] = useState(false);
   return (
     <article className="nav-bar-cont">
       <nav className="nav-mobile">

@@ -1,0 +1,237 @@
+.about-cont {
+  position: relative;
+  max-width: 1200px;
+  position: relative;
+  max-height: 1827px;
+  background-color: #f1f1f1;
+  margin: 0 auto;
+  padding-top: 5%;
+}
+
+.page-head h1 {
+  position: relative;
+  height: 100px;
+  margin: 0 auto;
+  font-size: 2.4rem;
+  text-align: center;
+  height: 58px;
+  color: var(--first);
+}
+
+@keyframes slide-in {
+  0% {
+    top: -50px;
+  }
+  100% {
+    top: 0px;
+  }
+}
+
+.line {
+  position: relative;
+  width: 81px;
+  height: 5px;
+  background: var(--fifth);
+  margin: 0 auto;
+  bottom: 12px;
+}
+.sum-cont {
+  max-height: 950px;
+  width: 100%;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.sum-cont section {
+  display: flex;
+  height: 210px;
+  width: 580px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.sum-cont section div {
+  height: 90%;
+  width: 45%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex-direction: column;
+  padding: 1%;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  background: rgb(229 229 229);
+  align-items: center;
+  transition: 0.4s;
+}
+.sum-cont-icon:hover {
+  box-shadow: 3px 5px 5px -3px grey;
+  transition: 0.4s;
+  cursor: pointer;
+}
+.sum-cont section div h3 {
+  font-size: 1.4rem;
+  text-align: center;
+  color: var(--first);
+  margin: 0;
+  flex-wrap: wrap;
+}
+.sum-cont section div .svg-cont {
+  position: relative;
+  font-size: 3.8rem;
+  color: var(--second);
+  background-color: #d0e3f1;
+  height: 47%;
+  width: 51%;
+  border-radius: 50%;
+  left: 1px;
+}
+.sum-cont section div .svg-cont svg {
+  position: absolute;
+}
+.sum-cont section div h5 {
+  color: var(--third);
+  font-size: 1rem;
+}
+
+.divider {
+  height: 130px;
+  width: 100%;
+  background: #f1f1f1;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row;
+  justify-content: center;
+}
+.divider hr {
+  width: 100%;
+}
+
+.skills-cont {
+  height: 695px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.skills {
+  max-height: 500px;
+  width: 570px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1%;
+}
+.skill {
+  display: flex;
+  margin-top: 3%;
+  width: 100%;
+  border: 1px solid var(--first);
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.skill-lng {
+  display: flex;
+  height: 100%;
+  background-color: var(--first);
+  width: 26%;
+  font-family: fantasy;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1rem;
+  z-index: 1;
+}
+.scale-percetage {
+  display: flex;
+  height: 100%;
+  width: 65%;
+}
+.percetage {
+  height: 100%;
+  background-color: var(--sixth);
+  border-bottom-right-radius: 11px;
+  border-top-right-radius: 11px;
+}
+
+.skill-perc {
+  display: flex;
+  font-size: 1rem;
+  color: var(--first);
+  font-weight: 600;
+  width: 9%;
+  border-left: 1px solid var(--second);
+  justify-content: center;
+}
+
+@keyframes percentage-animation {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: (--progress-width, 0);
+  }
+}
+
+.scale div {
+  height: 100%;
+  background-color: var(--second);
+}
+
+.whois-cont {
+  max-height: 500px;
+  width: 570px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.whois-cont div {
+  height: 218px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: var(--first);
+  border-radius: 10px;
+  box-shadow: 4px 4px 20px var(--first);
+}
+.whois-cont h3 {
+  color: var(--first);
+  font-size: 1.8rem;
+  font-family: monospace;
+}
+.whois-cont h4 {
+  color: var(--third);
+  width: 65%;
+  height: 90%;
+  top: 14%;
+  font-size: 22px;
+  position: absolute;
+  right: 34%;
+  flex: 1 1;
+  padding: 7px;
+  white-space: initial;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pic {
+  width: 48%;
+  height: 115%;
+}
+.pic img {
+  position: relative;
+  height: 154%;
+  width: 88%;
+  left: 16%;
+  bottom: 61%;
+}
+.profile-cont h3 {
+  height: 15%;
+  width: 90%;
+}
